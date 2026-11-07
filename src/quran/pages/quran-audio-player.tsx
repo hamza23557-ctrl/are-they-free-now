@@ -8,6 +8,7 @@ import { OfflineDownloadButton } from "@/quran/components/offline-download-butto
 import { getCachedAudioObjectUrl, getLocalMurattalUrl, isSplitMurattal } from "@/quran/lib/offline-audio";
 import { getAyahMurattalUrl } from "@/quran/lib/quran-search";
 import { Button } from "@/components/ui/button";
+import { Link as RouterLink } from "@tanstack/react-router";
 
 /* module-level flag — set before navigation so the next render can auto-play */
 let _autoPlayOnMount = false;
@@ -193,7 +194,7 @@ export default function QuranAudioPlayer() {
           <p className="font-serif text-xl text-primary">الآية {targetAyah}</p>
           <p className="text-xs text-muted-foreground">تلاوة الآية تتطلب اتصالاً بالإنترنت</p>
           <Button asChild variant="outline" size="sm">
-            <Link href={`/quran-audio/${number}`} search={() => ({})}>استماع للسورة كاملة</Link>
+            <RouterLink to="/quran-audio/$number" params={{ number: String(number) }} search={{}}>استماع للسورة كاملة</RouterLink>
           </Button>
         </div>
       )}

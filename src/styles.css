@@ -92,7 +92,7 @@
   border-radius: 6px;
 }
 .bottom-navigation .bottom-navigation-item svg { width: 21px; height: 21px; }
-.bottom-navigation-item span { max-width: 100%; min-height: 2.9em; display: flex; align-items: center; justify-content: center; }
+.bottom-navigation-item span { width: 100%; min-height: 2.9em; display: block; white-space: normal; text-wrap: balance; }
 .bottom-navigation .bottom-navigation-item--active {
   color: hsl(var(--primary));
   background: hsl(var(--primary) / 0.08);
