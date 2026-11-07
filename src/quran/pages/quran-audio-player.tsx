@@ -193,7 +193,7 @@ export default function QuranAudioPlayer() {
           <p className="font-serif text-xl text-primary">الآية {targetAyah}</p>
           <p className="text-xs text-muted-foreground">تلاوة الآية تتطلب اتصالاً بالإنترنت</p>
           <Button asChild variant="outline" size="sm">
-            <Link href={`/quran-audio/${number}`} search={{}}>استماع للسورة كاملة</Link>
+            <Link href={`/quran-audio/${number}`} search={() => ({})}>استماع للسورة كاملة</Link>
           </Button>
         </div>
       )}

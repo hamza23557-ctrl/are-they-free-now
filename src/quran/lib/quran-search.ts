@@ -9,7 +9,8 @@ export interface AyahMatch {
 }
 
 export function normalizeArabic(text: string): string {
-  return text.replace(/[\u064B-\u065F\u0670\u0640\u06D6-\u06ED]/g, "")
+  return text.replace(/([\u0621-\u064A])\u064E?\u0670/g, "$1ا")
+    .replace(/[\u064B-\u065F\u0670\u0640\u06D6-\u06ED]/g, "")
     .replace(/[أإآٱ]/g, "ا").replace(/ة/g, "ه").replace(/ى/g, "ي")
     .replace(/[ؤئ]/g, "ء").replace(/\s+/g, " ").trim().toLowerCase();
 }
@@ -49,7 +50,7 @@ export function loadAyahCorpus(): Promise<AyahMatch[]> {
 }
 
 export function parseAyahSearch(search: Record<string, unknown>): { ayah?: number } {
-  const ayah = Number(search.ayah);
+  const ayah = Number(search["ayah"]);
   return Number.isInteger(ayah) && ayah > 0 && ayah <= 286 ? { ayah } : {};
 }
 
