@@ -1,7 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import QuranAudioPlayer from "@/quran/pages/quran-audio-player";
+import { parseAyahSearch } from "@/quran/lib/quran-search";
 
 export const Route = createFileRoute("/quran-audio/$number")({
+  validateSearch: parseAyahSearch,
   head: () => ({
     meta: [
       { title: "مشغل التلاوة | تقوى القلوب | محمد صديق المنشاوي | تطبيق متكامل" },

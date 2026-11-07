@@ -25,7 +25,9 @@ export async function setBanner(visible: boolean) {
     await init();
     const { AdMob, BannerAdPosition, BannerAdSize } = await lib();
     if (visible) {
-      await AdMob.showBanner({ adId: AD_IDS.banner, adSize: BannerAdSize.ADAPTIVE_BANNER, position: BannerAdPosition.BOTTOM_CENTER, isTesting: TESTING });
+      const navigation = document.querySelector<HTMLElement>(".bottom-navigation");
+      const margin = navigation?.getBoundingClientRect().height ?? 76;
+      await AdMob.showBanner({ adId: AD_IDS.banner, adSize: BannerAdSize.ADAPTIVE_BANNER, position: BannerAdPosition.BOTTOM_CENTER, margin, isTesting: TESTING });
     } else await AdMob.hideBanner();
     bannerShown = visible;
   } catch { /* ad failed; app keeps working */ }
