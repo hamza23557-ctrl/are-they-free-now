@@ -10,33 +10,336 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AsmaHusnaRouteImport } from './routes/asma-husna'
+import { Route as DuasRouteImport } from './routes/duas'
+import { Route as FavoritesRouteImport } from './routes/favorites'
+import { Route as IlluminatedBookRouteImport } from './routes/illuminated-book'
+import { Route as NotificationsRouteImport } from './routes/notifications'
+import { Route as PrayerTimesRouteImport } from './routes/prayer-times'
+import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as QiblaRouteImport } from './routes/qibla'
+import { Route as SearchRouteImport } from './routes/search'
+import { Route as TafsirRouteImport } from './routes/tafsir'
+import { Route as TasbeehRouteImport } from './routes/tasbeeh'
+import { Route as AdhkarIndexRouteImport } from './routes/adhkar/index'
+import { Route as AdhkarCategoryRouteImport } from './routes/adhkar/$category'
+import { Route as HadithIndexRouteImport } from './routes/hadith/index'
+import { Route as HadithBookRouteImport } from './routes/hadith/$book'
+import { Route as HadithFavoritesRouteImport } from './routes/hadith/favorites'
+import { Route as QuranAudioIndexRouteImport } from './routes/quran-audio/index'
+import { Route as QuranAudioNumberRouteImport } from './routes/quran-audio/$number'
+import { Route as QuranTajweedIndexRouteImport } from './routes/quran-tajweed/index'
+import { Route as QuranTajweedNumberRouteImport } from './routes/quran-tajweed/$number'
+import { Route as QuranWrittenIndexRouteImport } from './routes/quran-written/index'
+import { Route as QuranWrittenNumberRouteImport } from './routes/quran-written/$number'
+import { Route as SurahNumberRouteImport } from './routes/surah/$number'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AsmaHusnaRoute = AsmaHusnaRouteImport.update({
+  id: '/asma-husna',
+  path: '/asma-husna',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DuasRoute = DuasRouteImport.update({
+  id: '/duas',
+  path: '/duas',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FavoritesRoute = FavoritesRouteImport.update({
+  id: '/favorites',
+  path: '/favorites',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const IlluminatedBookRoute = IlluminatedBookRouteImport.update({
+  id: '/illuminated-book',
+  path: '/illuminated-book',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NotificationsRoute = NotificationsRouteImport.update({
+  id: '/notifications',
+  path: '/notifications',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrayerTimesRoute = PrayerTimesRouteImport.update({
+  id: '/prayer-times',
+  path: '/prayer-times',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const QiblaRoute = QiblaRouteImport.update({
+  id: '/qibla',
+  path: '/qibla',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SearchRoute = SearchRouteImport.update({
+  id: '/search',
+  path: '/search',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TafsirRoute = TafsirRouteImport.update({
+  id: '/tafsir',
+  path: '/tafsir',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TasbeehRoute = TasbeehRouteImport.update({
+  id: '/tasbeeh',
+  path: '/tasbeeh',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdhkarIndexRoute = AdhkarIndexRouteImport.update({
+  id: '/adhkar/',
+  path: '/adhkar/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdhkarCategoryRoute = AdhkarCategoryRouteImport.update({
+  id: '/adhkar/$category',
+  path: '/adhkar/$category',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HadithIndexRoute = HadithIndexRouteImport.update({
+  id: '/hadith/',
+  path: '/hadith/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HadithBookRoute = HadithBookRouteImport.update({
+  id: '/hadith/$book',
+  path: '/hadith/$book',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HadithFavoritesRoute = HadithFavoritesRouteImport.update({
+  id: '/hadith/favorites',
+  path: '/hadith/favorites',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const QuranAudioIndexRoute = QuranAudioIndexRouteImport.update({
+  id: '/quran-audio/',
+  path: '/quran-audio/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const QuranAudioNumberRoute = QuranAudioNumberRouteImport.update({
+  id: '/quran-audio/$number',
+  path: '/quran-audio/$number',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const QuranTajweedIndexRoute = QuranTajweedIndexRouteImport.update({
+  id: '/quran-tajweed/',
+  path: '/quran-tajweed/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const QuranTajweedNumberRoute = QuranTajweedNumberRouteImport.update({
+  id: '/quran-tajweed/$number',
+  path: '/quran-tajweed/$number',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const QuranWrittenIndexRoute = QuranWrittenIndexRouteImport.update({
+  id: '/quran-written/',
+  path: '/quran-written/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const QuranWrittenNumberRoute = QuranWrittenNumberRouteImport.update({
+  id: '/quran-written/$number',
+  path: '/quran-written/$number',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SurahNumberRoute = SurahNumberRouteImport.update({
+  id: '/surah/$number',
+  path: '/surah/$number',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/asma-husna': typeof AsmaHusnaRoute
+  '/duas': typeof DuasRoute
+  '/favorites': typeof FavoritesRoute
+  '/illuminated-book': typeof IlluminatedBookRoute
+  '/notifications': typeof NotificationsRoute
+  '/prayer-times': typeof PrayerTimesRoute
+  '/privacy': typeof PrivacyRoute
+  '/qibla': typeof QiblaRoute
+  '/search': typeof SearchRoute
+  '/tafsir': typeof TafsirRoute
+  '/tasbeeh': typeof TasbeehRoute
+  '/adhkar/$category': typeof AdhkarCategoryRoute
+  '/hadith/$book': typeof HadithBookRoute
+  '/hadith/favorites': typeof HadithFavoritesRoute
+  '/quran-audio/$number': typeof QuranAudioNumberRoute
+  '/quran-tajweed/$number': typeof QuranTajweedNumberRoute
+  '/quran-written/$number': typeof QuranWrittenNumberRoute
+  '/surah/$number': typeof SurahNumberRoute
+  '/adhkar/': typeof AdhkarIndexRoute
+  '/hadith/': typeof HadithIndexRoute
+  '/quran-audio/': typeof QuranAudioIndexRoute
+  '/quran-tajweed/': typeof QuranTajweedIndexRoute
+  '/quran-written/': typeof QuranWrittenIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/asma-husna': typeof AsmaHusnaRoute
+  '/duas': typeof DuasRoute
+  '/favorites': typeof FavoritesRoute
+  '/illuminated-book': typeof IlluminatedBookRoute
+  '/notifications': typeof NotificationsRoute
+  '/prayer-times': typeof PrayerTimesRoute
+  '/privacy': typeof PrivacyRoute
+  '/qibla': typeof QiblaRoute
+  '/search': typeof SearchRoute
+  '/tafsir': typeof TafsirRoute
+  '/tasbeeh': typeof TasbeehRoute
+  '/adhkar/$category': typeof AdhkarCategoryRoute
+  '/hadith/$book': typeof HadithBookRoute
+  '/hadith/favorites': typeof HadithFavoritesRoute
+  '/quran-audio/$number': typeof QuranAudioNumberRoute
+  '/quran-tajweed/$number': typeof QuranTajweedNumberRoute
+  '/quran-written/$number': typeof QuranWrittenNumberRoute
+  '/surah/$number': typeof SurahNumberRoute
+  '/adhkar': typeof AdhkarIndexRoute
+  '/hadith': typeof HadithIndexRoute
+  '/quran-audio': typeof QuranAudioIndexRoute
+  '/quran-tajweed': typeof QuranTajweedIndexRoute
+  '/quran-written': typeof QuranWrittenIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/asma-husna': typeof AsmaHusnaRoute
+  '/duas': typeof DuasRoute
+  '/favorites': typeof FavoritesRoute
+  '/illuminated-book': typeof IlluminatedBookRoute
+  '/notifications': typeof NotificationsRoute
+  '/prayer-times': typeof PrayerTimesRoute
+  '/privacy': typeof PrivacyRoute
+  '/qibla': typeof QiblaRoute
+  '/search': typeof SearchRoute
+  '/tafsir': typeof TafsirRoute
+  '/tasbeeh': typeof TasbeehRoute
+  '/adhkar/$category': typeof AdhkarCategoryRoute
+  '/hadith/$book': typeof HadithBookRoute
+  '/hadith/favorites': typeof HadithFavoritesRoute
+  '/quran-audio/$number': typeof QuranAudioNumberRoute
+  '/quran-tajweed/$number': typeof QuranTajweedNumberRoute
+  '/quran-written/$number': typeof QuranWrittenNumberRoute
+  '/surah/$number': typeof SurahNumberRoute
+  '/adhkar/': typeof AdhkarIndexRoute
+  '/hadith/': typeof HadithIndexRoute
+  '/quran-audio/': typeof QuranAudioIndexRoute
+  '/quran-tajweed/': typeof QuranTajweedIndexRoute
+  '/quran-written/': typeof QuranWrittenIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/asma-husna'
+    | '/duas'
+    | '/favorites'
+    | '/illuminated-book'
+    | '/notifications'
+    | '/prayer-times'
+    | '/privacy'
+    | '/qibla'
+    | '/search'
+    | '/tafsir'
+    | '/tasbeeh'
+    | '/adhkar/$category'
+    | '/hadith/$book'
+    | '/hadith/favorites'
+    | '/quran-audio/$number'
+    | '/quran-tajweed/$number'
+    | '/quran-written/$number'
+    | '/surah/$number'
+    | '/adhkar/'
+    | '/hadith/'
+    | '/quran-audio/'
+    | '/quran-tajweed/'
+    | '/quran-written/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/asma-husna'
+    | '/duas'
+    | '/favorites'
+    | '/illuminated-book'
+    | '/notifications'
+    | '/prayer-times'
+    | '/privacy'
+    | '/qibla'
+    | '/search'
+    | '/tafsir'
+    | '/tasbeeh'
+    | '/adhkar/$category'
+    | '/hadith/$book'
+    | '/hadith/favorites'
+    | '/quran-audio/$number'
+    | '/quran-tajweed/$number'
+    | '/quran-written/$number'
+    | '/surah/$number'
+    | '/adhkar'
+    | '/hadith'
+    | '/quran-audio'
+    | '/quran-tajweed'
+    | '/quran-written'
+  id:
+    | '__root__'
+    | '/'
+    | '/asma-husna'
+    | '/duas'
+    | '/favorites'
+    | '/illuminated-book'
+    | '/notifications'
+    | '/prayer-times'
+    | '/privacy'
+    | '/qibla'
+    | '/search'
+    | '/tafsir'
+    | '/tasbeeh'
+    | '/adhkar/$category'
+    | '/hadith/$book'
+    | '/hadith/favorites'
+    | '/quran-audio/$number'
+    | '/quran-tajweed/$number'
+    | '/quran-written/$number'
+    | '/surah/$number'
+    | '/adhkar/'
+    | '/hadith/'
+    | '/quran-audio/'
+    | '/quran-tajweed/'
+    | '/quran-written/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AsmaHusnaRoute: typeof AsmaHusnaRoute
+  DuasRoute: typeof DuasRoute
+  FavoritesRoute: typeof FavoritesRoute
+  IlluminatedBookRoute: typeof IlluminatedBookRoute
+  NotificationsRoute: typeof NotificationsRoute
+  PrayerTimesRoute: typeof PrayerTimesRoute
+  PrivacyRoute: typeof PrivacyRoute
+  QiblaRoute: typeof QiblaRoute
+  SearchRoute: typeof SearchRoute
+  TafsirRoute: typeof TafsirRoute
+  TasbeehRoute: typeof TasbeehRoute
+  AdhkarCategoryRoute: typeof AdhkarCategoryRoute
+  HadithBookRoute: typeof HadithBookRoute
+  HadithFavoritesRoute: typeof HadithFavoritesRoute
+  QuranAudioNumberRoute: typeof QuranAudioNumberRoute
+  QuranTajweedNumberRoute: typeof QuranTajweedNumberRoute
+  QuranWrittenNumberRoute: typeof QuranWrittenNumberRoute
+  SurahNumberRoute: typeof SurahNumberRoute
+  AdhkarIndexRoute: typeof AdhkarIndexRoute
+  HadithIndexRoute: typeof HadithIndexRoute
+  QuranAudioIndexRoute: typeof QuranAudioIndexRoute
+  QuranTajweedIndexRoute: typeof QuranTajweedIndexRoute
+  QuranWrittenIndexRoute: typeof QuranWrittenIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +351,195 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/asma-husna': {
+      id: '/asma-husna'
+      path: '/asma-husna'
+      fullPath: '/asma-husna'
+      preLoaderRoute: typeof AsmaHusnaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/duas': {
+      id: '/duas'
+      path: '/duas'
+      fullPath: '/duas'
+      preLoaderRoute: typeof DuasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/favorites': {
+      id: '/favorites'
+      path: '/favorites'
+      fullPath: '/favorites'
+      preLoaderRoute: typeof FavoritesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/illuminated-book': {
+      id: '/illuminated-book'
+      path: '/illuminated-book'
+      fullPath: '/illuminated-book'
+      preLoaderRoute: typeof IlluminatedBookRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/notifications': {
+      id: '/notifications'
+      path: '/notifications'
+      fullPath: '/notifications'
+      preLoaderRoute: typeof NotificationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/prayer-times': {
+      id: '/prayer-times'
+      path: '/prayer-times'
+      fullPath: '/prayer-times'
+      preLoaderRoute: typeof PrayerTimesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/qibla': {
+      id: '/qibla'
+      path: '/qibla'
+      fullPath: '/qibla'
+      preLoaderRoute: typeof QiblaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/search': {
+      id: '/search'
+      path: '/search'
+      fullPath: '/search'
+      preLoaderRoute: typeof SearchRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tafsir': {
+      id: '/tafsir'
+      path: '/tafsir'
+      fullPath: '/tafsir'
+      preLoaderRoute: typeof TafsirRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tasbeeh': {
+      id: '/tasbeeh'
+      path: '/tasbeeh'
+      fullPath: '/tasbeeh'
+      preLoaderRoute: typeof TasbeehRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/adhkar/': {
+      id: '/adhkar/'
+      path: '/adhkar'
+      fullPath: '/adhkar/'
+      preLoaderRoute: typeof AdhkarIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/adhkar/$category': {
+      id: '/adhkar/$category'
+      path: '/adhkar/$category'
+      fullPath: '/adhkar/$category'
+      preLoaderRoute: typeof AdhkarCategoryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/hadith/': {
+      id: '/hadith/'
+      path: '/hadith'
+      fullPath: '/hadith/'
+      preLoaderRoute: typeof HadithIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/hadith/$book': {
+      id: '/hadith/$book'
+      path: '/hadith/$book'
+      fullPath: '/hadith/$book'
+      preLoaderRoute: typeof HadithBookRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/hadith/favorites': {
+      id: '/hadith/favorites'
+      path: '/hadith/favorites'
+      fullPath: '/hadith/favorites'
+      preLoaderRoute: typeof HadithFavoritesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/quran-audio/': {
+      id: '/quran-audio/'
+      path: '/quran-audio'
+      fullPath: '/quran-audio/'
+      preLoaderRoute: typeof QuranAudioIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/quran-audio/$number': {
+      id: '/quran-audio/$number'
+      path: '/quran-audio/$number'
+      fullPath: '/quran-audio/$number'
+      preLoaderRoute: typeof QuranAudioNumberRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/quran-tajweed/': {
+      id: '/quran-tajweed/'
+      path: '/quran-tajweed'
+      fullPath: '/quran-tajweed/'
+      preLoaderRoute: typeof QuranTajweedIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/quran-tajweed/$number': {
+      id: '/quran-tajweed/$number'
+      path: '/quran-tajweed/$number'
+      fullPath: '/quran-tajweed/$number'
+      preLoaderRoute: typeof QuranTajweedNumberRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/quran-written/': {
+      id: '/quran-written/'
+      path: '/quran-written'
+      fullPath: '/quran-written/'
+      preLoaderRoute: typeof QuranWrittenIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/quran-written/$number': {
+      id: '/quran-written/$number'
+      path: '/quran-written/$number'
+      fullPath: '/quran-written/$number'
+      preLoaderRoute: typeof QuranWrittenNumberRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/surah/$number': {
+      id: '/surah/$number'
+      path: '/surah/$number'
+      fullPath: '/surah/$number'
+      preLoaderRoute: typeof SurahNumberRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AsmaHusnaRoute: AsmaHusnaRoute,
+  DuasRoute: DuasRoute,
+  FavoritesRoute: FavoritesRoute,
+  IlluminatedBookRoute: IlluminatedBookRoute,
+  NotificationsRoute: NotificationsRoute,
+  PrayerTimesRoute: PrayerTimesRoute,
+  PrivacyRoute: PrivacyRoute,
+  QiblaRoute: QiblaRoute,
+  SearchRoute: SearchRoute,
+  TafsirRoute: TafsirRoute,
+  TasbeehRoute: TasbeehRoute,
+  AdhkarCategoryRoute: AdhkarCategoryRoute,
+  HadithBookRoute: HadithBookRoute,
+  HadithFavoritesRoute: HadithFavoritesRoute,
+  QuranAudioNumberRoute: QuranAudioNumberRoute,
+  QuranTajweedNumberRoute: QuranTajweedNumberRoute,
+  QuranWrittenNumberRoute: QuranWrittenNumberRoute,
+  SurahNumberRoute: SurahNumberRoute,
+  AdhkarIndexRoute: AdhkarIndexRoute,
+  HadithIndexRoute: HadithIndexRoute,
+  QuranAudioIndexRoute: QuranAudioIndexRoute,
+  QuranTajweedIndexRoute: QuranTajweedIndexRoute,
+  QuranWrittenIndexRoute: QuranWrittenIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
