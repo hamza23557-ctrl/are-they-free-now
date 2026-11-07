@@ -7,24 +7,14 @@
 >
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
-
-## What Lovable manages
-
-Rules outside this block are the project's own. Change the pieces below in
-Lovable, not by hand. With the [Lovable MCP](https://mcp.lovable.dev)
-connected, `send_message` asks Lovable to do it; otherwise ask the user to
-use the editor.
-
-- **Database.** Do not add or edit `supabase/migrations/` or `drizzle/`.
-  Ask Lovable to change the schema.
-- **Generated files.** Do not edit a file whose header says it is automatically
-  generated.
-- **AI gateway.** Keep model calls on Lovable's gateway, and keep
-  `LOVABLE_API_KEY` out of browser code.
-- **Connectors.** Lovable provides native connectors. `list_connectors` shows
-  which are enabled; `add_connector` only returns the dashboard link. When a
-  connector is enabled, calls go through the connector gateway and need
-  `LOVABLE_API_KEY`. When Lovable does not provide one, users can bring their
-  own key and store it in Secrets.
-- **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+## Rules
+
+- Illuminated Book answers via server-only AI SDK Responses drawing on well-known Islamic scholarship, attributing non-bundled claims by book name; only bundled excerpts are shown as verified references, so the app never displays unverifiable source text.
+- Keep the Illuminated Book video area explicitly unavailable until the user's video is supplied; never simulate playback, answers, or rewarded-ad credits.
+
+- Fonts must be bundled locally through `@fontsource*` packages imported in `src/styles.css`; never load them from a remote font CDN — the app has to render correctly with no internet.
+- Qibla uses north-referenced device orientation only, requests sensor permission from a user action, and rotates the dial and needle with continuous angles to avoid false bearings and full-turn jumps.
+
+- Android packaging uses Capacitor with server.url pointing at the hosted app, because AI answers rely on server functions that cannot run inside a static Android bundle. server.url must always be the published (public) URL, never a preview URL — preview hosts require a Lovable login and the APK would show a login wall instead of opening. After publishing, update server.url and run `npm run cap:sync`.

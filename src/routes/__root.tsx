@@ -12,6 +12,9 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { Layout } from "../quran/components/layout";
+import { Toaster } from "../quran/components/ui/toaster";
+import { TooltipProvider } from "../quran/components/ui/tooltip";
 
 function NotFoundComponent() {
   return (
@@ -75,27 +78,30 @@ function ErrorComponent({ error, reset }: ErrorComponentProps) {
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   head: () => ({
-    // Replace these placeholders with the app's name and description when first building the app.
-    // Each content route, / included, must still set its own head(). Never add og:image or
-    // twitter:image here: every page without its own would inherit the root's preview image.
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "تقوى القلوب | محمد صديق المنشاوي | تطبيق متكامل" },
+      {
+        name: "description",
+        content:
+          "تطبيق تقوى القلوب: قراءة المصحف، الاستماع للتلاوات، التفسير، الحديث، الأذكار والأدعية، مواقيت الصلاة والقبلة.",
+      },
+      { property: "og:title", content: "تقوى القلوب | محمد صديق المنشاوي | تطبيق متكامل" },
+      {
+        property: "og:description",
+        content:
+          "قراءة المصحف، الاستماع للتلاوات، التفسير، الحديث، الأذكار والأدعية، مواقيت الصلاة والقبلة.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@Lovable" },
     ],
     links: [
       {
         rel: "stylesheet",
         href: appCss,
       },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "icon", type: "image/png", href: "/favicon.png" },
     ],
   }),
   shellComponent: RootShell,
@@ -106,7 +112,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="ar" dir="rtl">
       <head>
         <HeadContent />
       </head>
@@ -120,11 +126,19 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  useEffect(() => {
+    import("../quran/lib/reminders").then((m) => m.refreshRemindersOnStart());
+  }, []);
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
+      <TooltipProvider>
+        <Layout>
+          {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+          <Outlet />
+        </Layout>
+        <Toaster />
+      </TooltipProvider>
     </QueryClientProvider>
   );
 }

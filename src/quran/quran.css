@@ -1,0 +1,430 @@
+@import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@400;500;600;700&family=Marhey:wght@400;500;600&display=swap');
+@import "tailwindcss";
+@import "tw-animate-css";
+@plugin "@tailwindcss/typography";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-card-border: hsl(var(--card-border));
+
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+
+  --font-sans: var(--app-font-sans);
+  --font-serif: var(--app-font-serif);
+}
+
+:root {
+  color-scheme: light;
+  --background:      43 42% 96%;
+  --foreground:      142 25% 15%;
+  --border:          39 24% 82%;
+  --input:           39 24% 82%;
+  --ring:            144 38% 28%;
+  --card:            42 54% 99%;
+  --card-foreground: 142 25% 15%;
+  --card-border:     39 27% 88%;
+  --primary:         144 37% 25%;
+  --primary-foreground: 43 54% 97%;
+  --accent:          41 48% 56%;
+  --accent-foreground: 142 25% 15%;
+  --muted:           42 22% 88%;
+  --muted-foreground: 39 12% 48%;
+  --sidebar:         144 30% 19%;
+  --sidebar-foreground: 43 40% 92%;
+  --sidebar-border:  144 28% 14%;
+  --app-font-sans: 'Cairo', sans-serif;
+  --app-font-serif: 'Amiri', serif;
+  --app-font-arabic: 'Cairo', sans-serif;
+  --app-font-display: 'Marhey', 'Cairo', sans-serif;
+  --radius: 1.15rem;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html,
+  body,
+  #root {
+    min-height: 100%;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--app-font-sans);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+}
+
+/* Quran / Arabic text helper */
+.quran-text {
+  font-family: 'Amiri', serif;
+  direction: rtl;
+  text-align: right;
+}
+
+.quran-home-screen {
+  --quran-home-surface: #faf9f5;
+  position: relative;
+  width: 100%;
+  height: 100dvh;
+  min-height: 100dvh;
+  max-height: 100dvh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+  background: var(--quran-home-surface);
+}
+
+.quran-home-art {
+  position: relative;
+  width: min(100vw, calc(100dvh * 9 / 16));
+  min-height: 100dvh;
+  padding-bottom: clamp(24px, 4vw, 48px);
+  overflow: visible;
+  flex: 0 0 auto;
+  background: var(--quran-home-surface);
+}
+
+.quran-home-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  isolation: isolate;
+  width: 100%;
+  height: clamp(260px, 32dvh, 380px);
+  flex: 0 0 auto;
+  background: var(--quran-home-surface);
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  box-shadow: none;
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    #000 0%,
+    #000 78%,
+    rgba(0, 0, 0, 0.82) 88%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    #000 0%,
+    #000 78%,
+    rgba(0, 0, 0, 0.82) 88%,
+    transparent 100%
+  );
+}
+
+.quran-home-bottom-background {
+  position: fixed;
+  right: auto;
+  bottom: 0;
+  left: 50%;
+  z-index: 10;
+  width: min(100vw, calc(100dvh * 9 / 16));
+  height: clamp(170px, 23dvh, 260px);
+  pointer-events: none;
+  transform: translateX(-50%);
+  background-color: var(--quran-home-surface);
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(0, 0, 0, 0.08) 26%,
+    rgba(0, 0, 0, 0.36) 50%,
+    rgba(0, 0, 0, 0.78) 68%,
+    #000 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(0, 0, 0, 0.08) 26%,
+    rgba(0, 0, 0, 0.36) 50%,
+    rgba(0, 0, 0, 0.78) 68%,
+    #000 100%
+  );
+}
+
+.home-button-stack {
+  position: relative;
+  right: auto;
+  left: auto;
+  padding: 0 8% calc(clamp(170px, 23dvh, 260px) + clamp(24px, 4vw, 48px));
+  display: flex;
+  flex-direction: column;
+  gap: clamp(8px, 1.1vw, 14px);
+  z-index: 1;
+}
+
+.home-image-button {
+  display: block;
+  width: 100%;
+  aspect-ratio: 883 / 190;
+  flex: 0 0 auto;
+  overflow: hidden;
+  border-radius: clamp(12px, 1.7vw, 26px);
+  outline: none;
+  box-shadow: 0 5px 12px rgba(74, 62, 44, 0.12);
+  transition: transform 160ms ease, filter 160ms ease;
+}
+
+.home-image-button img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  user-select: none;
+}
+
+.home-image-button:hover {
+  filter: brightness(1.02);
+  transform: translateY(-1px);
+}
+
+.home-image-button:active {
+  transform: scale(0.988);
+}
+
+.home-image-button:focus-visible {
+  outline: 2px solid #1c4b31;
+  outline-offset: 3px;
+}
+
+.home-nav-title,
+.home-nav-subtitle {
+  font-family: var(--app-font-arabic);
+}
+
+.home-nav-title {
+  letter-spacing: -0.02em;
+}
+
+.home-nav-subtitle {
+  opacity: 0.82;
+}
+
+.home-sticky-hero {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  isolation: isolate;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.home-navigation {
+  position: relative;
+}
+
+.home-nav-card {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(225, 221, 210, 0.9);
+  background: linear-gradient(105deg, rgba(255, 255, 252, 0.98), rgba(249, 248, 242, 0.97));
+  box-shadow:
+    0 7px 16px rgba(78, 66, 49, 0.105),
+    0 1px 0 rgba(255, 255, 255, 0.92) inset;
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.home-nav-card::before {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 102px;
+  height: 96px;
+  content: "";
+  opacity: 0.42;
+  transform: translateY(-50%);
+  pointer-events: none;
+  background: url("/home-button-pattern.png") center / 100% 100% no-repeat;
+}
+
+.home-nav-card:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 10px 20px rgba(78, 66, 49, 0.14),
+    0 1px 0 rgba(255, 255, 255, 0.92) inset;
+}
+
+.home-nav-card:focus-visible {
+  outline: 2px solid #3b6a45;
+  outline-offset: 3px;
+}
+
+.home-nav-card:active {
+  transform: scale(0.988);
+}
+
+.home-nav-icon-tile {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  width: 64px;
+  height: 64px;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border: 1px solid rgba(255, 238, 180, 0.32);
+  border-radius: 16px;
+  color: #fff8e5;
+  background: linear-gradient(145deg, #1c4b31, #2c6242);
+  box-shadow:
+    0 5px 10px rgba(35, 70, 25, 0.23),
+    0 0 0 1px rgba(27, 67, 39, 0.1) inset;
+}
+
+.home-nav-icon-tile::before,
+.home-nav-icon-tile::after {
+  position: absolute;
+  width: 44px;
+  height: 44px;
+  content: "";
+  border: 1px solid rgba(245, 221, 155, 0.42);
+  border-radius: 13px;
+  transform: rotate(45deg);
+}
+
+.home-nav-icon-tile--image::before,
+.home-nav-icon-tile--image::after {
+  display: none;
+}
+
+.home-nav-icon-tile::after {
+  width: 31px;
+  height: 31px;
+  border-radius: 9px;
+  opacity: 0.7;
+}
+
+.home-nav-icon-tile > * {
+  position: relative;
+  z-index: 1;
+  filter: drop-shadow(0 1px 1px rgba(14, 38, 19, 0.4));
+}
+
+.home-nav-reference-icon {
+  display: block;
+  width: 64px;
+  height: 64px;
+  flex-shrink: 0;
+  object-fit: cover;
+}
+
+.home-nav-chevron {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(182, 191, 169, 0.82);
+  border-radius: 50%;
+  color: #244c35;
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow: inset 0 0 0 3px rgba(247, 244, 235, 0.92);
+}
+
+.home-nav-chevron::before,
+.home-nav-chevron::after {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  content: "";
+  border: 1px solid rgba(184, 147, 58, 0.2);
+  border-radius: 4px 11px;
+  transform: rotate(45deg);
+}
+
+.home-nav-chevron::after {
+  width: 10px;
+  height: 10px;
+  opacity: 0.7;
+}
+
+.home-footer-verse {
+  font-family: var(--app-font-serif);
+  color: #284633;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+@media (max-width: 420px) {
+  .home-nav-card {
+    min-height: 88px;
+  }
+
+  .home-nav-icon-tile,
+  .home-nav-reference-icon {
+    width: 58px;
+    height: 58px;
+  }
+
+  .home-nav-chevron {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+.home-reference-ornament svg {
+  display: block;
+}
+
+/* Consistent card shadow across all pages */
+.card-shadow {
+  box-shadow: 0 2px 12px rgba(45, 90, 30, 0.10);
+}
+
+/* Bottom audio controls hide while reading down and return while scrolling up. */
+.audio-toolbar {
+  transform: translateY(0);
+  opacity: 1;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  will-change: transform;
+}
+
+.audio-toolbar.audio-toolbar-hidden {
+  transform: translateY(100%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Mushaf ayah end-of-verse circle */
+.ayah-circle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.6em;
+  height: 1.6em;
+  border-radius: 50%;
+  border: 1.5px solid currentColor;
+  font-family: 'Amiri', serif;
+  font-size: 0.7em;
+  opacity: 0.6;
+  vertical-align: middle;
+  margin: 0 2px;
+}
