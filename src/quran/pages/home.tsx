@@ -112,9 +112,6 @@ export default function Home() {
               />
             </Link>
           ))}
-          <Link href="/notifications" className="block rounded-xl border border-border bg-card py-3 text-center font-bold text-foreground" data-testid="link-notifications">
-            🔔 الإشعارات والتذكير
-          </Link>
           <Link href="/privacy" className="block py-2 text-center text-sm text-muted-foreground underline" data-testid="link-privacy">
             سياسة الخصوصية
           </Link>

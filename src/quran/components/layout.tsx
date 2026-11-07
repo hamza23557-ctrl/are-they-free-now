@@ -1,6 +1,7 @@
 import { ReactNode, useEffect } from "react";
 import { useLocation } from "@/quran/wouter-shim";
 import { onPageChange, setBanner } from "@/quran/lib/ads";
+import { BottomNavigation } from "./bottom-navigation";
 
 export function Layout({ children }: { children: ReactNode }) {
   const [location] = useLocation();
@@ -17,6 +18,7 @@ export function Layout({ children }: { children: ReactNode }) {
         <main className="w-full">
           {children}
         </main>
+        <BottomNavigation />
       </div>
     );
   }
@@ -24,9 +26,10 @@ export function Layout({ children }: { children: ReactNode }) {
   // Extra bottom space so the bottom banner ad never covers content.
   return (
     <div className="min-h-[100dvh] flex flex-col w-full bg-background transition-colors duration-300">
-      <main className="flex-1 w-full px-4 py-2 pb-28">
+      <main className="app-content flex-1 w-full px-4 py-2">
         {children}
       </main>
+      <BottomNavigation />
     </div>
   );
 }

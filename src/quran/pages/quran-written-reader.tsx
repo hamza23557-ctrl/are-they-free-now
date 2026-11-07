@@ -90,7 +90,7 @@ function groupByPage(ayahs: MushafAyah[]): PageGroup[] {
   const map = new Map<number, { juz: number; ayahs: MushafAyah[] }>();
   for (const a of ayahs) {
     if (!map.has(a.page)) map.set(a.page, { juz: a.juz, ayahs: [] });
-    map.get(a.page)!.ayahs.push(a);
+    map.get(a.page)?.ayahs.push(a);
   }
   return Array.from(map.entries())
     .sort(([a], [b]) => a - b)
@@ -186,7 +186,9 @@ function MushafPage({
               )}
               <span
                 ref={(el) => { ayahRefs.current[ayah.numberInSurah] = el; }}
-                className="transition-colors duration-500 rounded text-[28px]"
+                data-ayah={ayah.numberInSurah}
+                data-highlighted={isHL || undefined}
+                className={`transition-colors duration-500 rounded text-[28px] ${isHL ? "bg-accent/30 text-primary" : ""}`}
               >
                 {ayah.text}
                 {ayah.sajda && (
@@ -220,19 +222,24 @@ export default function QuranWrittenReader() {
   );
 
   const pages = surah ? groupByPage(surah.ayahs) : [];
+  useEffect(() => {
+    setHighlightAyah(targetAyah > 0 ? targetAyah : null);
+  }, [number, targetAyah]);
   /* Scroll to & highlight target ayah */
   useEffect(() => {
     if (!highlightAyah || !surah || pages.length === 0) return;
+    let clearHighlight: ReturnType<typeof setTimeout> | undefined;
     const attempt = () => {
       const el = ayahRefs.current[highlightAyah];
       if (el) {
         el.scrollIntoView({ behavior: "smooth", block: "center" });
-        setTimeout(() => setHighlightAyah(null), 3500);
+        clearHighlight = setTimeout(() => setHighlightAyah(null), 3500);
         return true;
       }
       return false;
     };
-    if (!attempt()) setTimeout(attempt, 500);
+    const retry = !attempt() ? setTimeout(attempt, 500) : undefined;
+    return () => { clearTimeout(retry); clearTimeout(clearHighlight); };
   }, [highlightAyah, surah]);
 
   return (
