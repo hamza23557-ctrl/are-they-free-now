@@ -1,11 +1,13 @@
 import { useState, useEffect, useRef } from "react";
-import { Link, useLocation } from "@/quran/wouter-shim";
+import { Link, useLocation, useSearch } from "@/quran/wouter-shim";
 import { ChevronRight, Play, Pause, RotateCcw, RotateCw, SkipBack, SkipForward, Heart, Shuffle, Repeat1 } from "lucide-react";
 import { useSurahList } from "@/quran/hooks/useSurahList";
 import { useFavorites } from "@/quran/hooks/useFavorites";
 import { Skeleton } from "@/quran/components/ui/skeleton";
 import { OfflineDownloadButton } from "@/quran/components/offline-download-button";
 import { getCachedAudioObjectUrl, getLocalMurattalUrl, isSplitMurattal } from "@/quran/lib/offline-audio";
+import { getAyahMurattalUrl } from "@/quran/lib/quran-search";
+import { Button } from "@/components/ui/button";
 
 /* module-level flag — set before navigation so the next render can auto-play */
 let _autoPlayOnMount = false;
@@ -16,15 +18,19 @@ export default function QuranAudioPlayer() {
   const { surahs } = useSurahList();
   const surah = surahs.find((s) => s.number === number);
   const { isFavorite, toggle } = useFavorites();
+  const searchStr = useSearch();
+  const selectedAyah = Number(new URLSearchParams(searchStr).get("ayah"));
+  const targetAyah = Number.isInteger(selectedAyah) && selectedAyah > 0 && selectedAyah <= (surah?.numberOfAyahs ?? 286) ? selectedAyah : null;
 
   const audioRef = useRef<HTMLAudioElement>(null);
   const [playing, setPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [buffering, setBuffering] = useState(false);
+  const [audioError, setAudioError] = useState(false);
   const [playMode, setPlayMode] = useState<"off" | "auto" | "shuffle" | "repeat">("auto");
 
-  const audioUrl = isSplitMurattal(number) ? "" : getLocalMurattalUrl(number);
+  const audioUrl = targetAyah ? getAyahMurattalUrl(number, targetAyah) : isSplitMurattal(number) ? "" : getLocalMurattalUrl(number);
   const [audioSourceUrl, setAudioSourceUrl] = useState(audioUrl);
   const sourceObjectUrlRef = useRef<string | null>(null);
 
@@ -36,6 +42,7 @@ export default function QuranAudioPlayer() {
   useEffect(() => {
     let active = true;
     setAudioSourceUrl(audioUrl);
+    if (targetAyah) return;
 
     void getCachedAudioObjectUrl("murattal", number)
       .then((cachedUrl) => {
@@ -57,7 +64,7 @@ export default function QuranAudioPlayer() {
         sourceObjectUrlRef.current = null;
       }
     };
-  }, [number]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [number, audioUrl, targetAyah]);
 
   /* reset + optional auto-start when surah number changes */
   useEffect(() => {
@@ -70,6 +77,7 @@ export default function QuranAudioPlayer() {
     setCurrentTime(0);
     setDuration(0);
     setBuffering(false);
+    setAudioError(false);
 
     if (_autoPlayOnMount) {
       _autoPlayOnMount = false;
@@ -87,14 +95,16 @@ export default function QuranAudioPlayer() {
       audio.pause();
       setPlaying(false);
     } else {
+      setAudioError(false);
       setBuffering(true);
       audio.play()
         .then(() => { setPlaying(true); setBuffering(false); })
-        .catch(() => { setBuffering(false); });
+        .catch(() => { setBuffering(false); setAudioError(true); });
     }
   }
 
   function handleEnded() {
+    if (targetAyah) { setPlaying(false); setCurrentTime(0); return; }
     if (playMode === "repeat") {
       const audio = audioRef.current;
       if (audio) {
@@ -178,6 +188,16 @@ export default function QuranAudioPlayer() {
           </>
         ) : <Skeleton className="h-12 w-48 mx-auto" />}
       </div>
+      {targetAyah && (
+        <div className="space-y-3 border-y border-border py-4 text-center">
+          <p className="font-serif text-xl text-primary">الآية {targetAyah}</p>
+          <p className="text-xs text-muted-foreground">تلاوة الآية تتطلب اتصالاً بالإنترنت</p>
+          <Button asChild variant="outline" size="sm">
+            <Link href={`/quran-audio/${number}`} search={{}}>استماع للسورة كاملة</Link>
+          </Button>
+        </div>
+      )}
+      {audioError && <p role="alert" className="text-center text-sm text-foreground">تعذر تشغيل التلاوة. تحقق من الاتصال وحاول مجدداً.</p>}
       {/* player card */}
       <div className="bg-card border border-border rounded-3xl p-6 sm:p-8 space-y-6 shadow-sm pt-[24px] pb-[24px] pl-[24px] pr-[24px] mb-[400px] mt-[0px] ml-[0px] mr-[0px] text-left">
         {/* seek bar */}
@@ -209,7 +229,7 @@ export default function QuranAudioPlayer() {
               <span className="absolute inset-0 flex items-center justify-center text-[#f8f5f2] bg-[transparent] text-[10px] font-normal">10</span>
             </span>
           </button>
-          <button onClick={togglePlay}
+          <button onClick={togglePlay} aria-label={playing ? "إيقاف التلاوة مؤقتاً" : "تشغيل التلاوة"}
             className="w-20 h-20 rounded-full bg-primary text-primary-foreground flex items-center justify-center shadow-lg hover:bg-primary/90 transition-all active:scale-95"
             data-testid="button-play-pause">
             {buffering
@@ -264,6 +284,7 @@ export default function QuranAudioPlayer() {
         onEnded={handleEnded}
         onWaiting={() => setBuffering(true)}
         onPlaying={() => setBuffering(false)}
+        onError={() => { setAudioError(true); setBuffering(false); setPlaying(false); }}
         preload="none" />
       <p className="font-sans text-xs text-center text-muted-foreground">
         تلاوة الشيخ محمد صديق المنشاوي — رحمه الله
