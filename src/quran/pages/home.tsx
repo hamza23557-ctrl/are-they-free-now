@@ -1,5 +1,6 @@
 import { Link } from "@/quran/wouter-shim";
 import illuminatedBookAsset from "@/assets/home-buttons/illuminated-book-button.jpg.asset.json";
+import minshawiHeaderAsset from "@/assets/minshawi-header.jpg.asset.json";
 
 const homeBackground = `${import.meta.env.BASE_URL}quran-home-4k.jpg`;
 const buttonAsset = (name: string) =>
@@ -76,10 +77,11 @@ export default function Home() {
       aria-label="الصفحة الرئيسية"
     >
       <div className="quran-home-art">
-        <div
+        <img
           className="quran-home-header"
-          style={{ backgroundImage: `url(${homeBackground})` }}
-          aria-hidden="true"
+          src={minshawiHeaderAsset.url}
+          alt="فضيلة الشيخ محمد صديق المنشاوي"
+          draggable={false}
         />
         <div
           className="quran-home-bottom-background"
