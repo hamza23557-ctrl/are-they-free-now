@@ -1,5 +1,8 @@
 # Tasks
 
+- [ ] Add five-item bottom navigation and move the home notifications button into it.
+- [ ] Verify surah/ayah search with written-reader and murattal listening destinations.
+
 - [x] Prepare Android packaging: android platform added, launcher icons + adaptive icon + splash from the user's green Quran Kareem logo, app name "تقوى القلوب", favicon, ANDROID-BUILD.md guide. Blocked item: `server.url` in capacitor.config.ts must be swapped to the published URL after the user publishes (preview URLs need a Lovable login and break the APK).
 
 - [ ] Build the Illuminated Book question page and answer view without credits or ads.
