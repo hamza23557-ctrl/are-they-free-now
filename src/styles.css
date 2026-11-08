@@ -65,25 +65,26 @@
   --nav-olive: #6b7a3f;
   --nav-olive-deep: #3f4c1e;
   position: fixed;
-  bottom: calc(10px + env(safe-area-inset-bottom, 0px));
+  bottom: calc(24px + env(safe-area-inset-bottom, 0px));
   left: 50%;
   transform: translateX(-50%);
   z-index: 1100;
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
-  width: min(calc(100% - 20px), 560px);
+  width: min(calc(100% - 64px), 500px);
   height: var(--bottom-navigation-height);
   padding: 6px 8px;
-  background: linear-gradient(180deg, #fbfaf3 0%, #f4f1e3 55%, #eee9d6 100%);
-  border: 1px solid hsl(48 22% 84% / 0.9);
+  background: linear-gradient(180deg, hsl(48 33% 97% / 0.72) 0%, hsl(50 32% 92% / 0.72) 55%, hsl(47 30% 88% / 0.72) 100%);
+  border: 1px solid hsl(48 22% 84% / 0.6);
   border-radius: 26px;
   box-shadow:
     0 10px 26px hsl(60 20% 30% / 0.16),
     inset 0 1px 0 hsl(0 0% 100% / 0.85);
-  backdrop-filter: blur(6px);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
 }
 
-.bottom-navigation--home { width: min(calc(100vw - 20px), calc(100dvh * 9 / 16 - 20px)); }
+.bottom-navigation--home { width: min(calc(100vw - 64px), calc(100dvh * 9 / 16 - 64px)); }
 .bottom-navigation .bottom-navigation-item {
   min-width: 0;
   height: 100%;
