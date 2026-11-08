@@ -29,7 +29,6 @@ export function Layout({ children }: { children: ReactNode }) {
       <main className="app-content flex-1 w-full px-4 py-2">
         {children}
       </main>
-      <BottomNavigation />
     </div>
   );
 }
