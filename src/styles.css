@@ -34,7 +34,7 @@
 
 :root {
   color-scheme: light;
-  --background:      43 42% 96%;
+  --background:      0 0% 100%;
   --foreground:      142 25% 15%;
   --border:          39 24% 82%;
   --input:           39 24% 82%;
@@ -134,7 +134,7 @@
 }
 
 .quran-home-screen {
-  --quran-home-surface: #faf9f5;
+  --quran-home-surface: #ffffff;
   position: relative;
   width: 100%;
   height: calc(100dvh - var(--bottom-navigation-space));
