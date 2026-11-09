@@ -65,7 +65,7 @@
   --nav-olive: #6b7a3f;
   --nav-olive-deep: #3f4c1e;
   position: fixed;
-  bottom: calc(clamp(88px, 12dvh, 128px) + env(safe-area-inset-bottom, 0px));
+  bottom: calc(clamp(64px, 9dvh, 96px) + env(safe-area-inset-bottom, 0px));
   left: 50%;
   transform: translateX(-50%);
   z-index: 1100;
