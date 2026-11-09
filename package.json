@@ -12,7 +12,8 @@
     "format": "prettier --write .",
     "test": "vitest run",
     "test:watch": "vitest",
-    "cap:sync": "vite build && cap sync android",
+    "build:android": "CAPACITOR_BUILD=1 vite build",
+    "cap:sync": "CAPACITOR_BUILD=1 vite build && cap sync android",
     "cap:open": "cap open android"
   },
   "overrides": {
