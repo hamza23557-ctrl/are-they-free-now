@@ -56,7 +56,7 @@
   --app-font-arabic: 'Cairo Variable', 'Cairo', sans-serif;
   --app-font-display: 'Marhey Variable', 'Marhey', 'Cairo Variable', sans-serif;
   --radius: 1.15rem;
-  --bottom-navigation-height: 76px;
+  --bottom-navigation-height: 64px;
   --bottom-navigation-space: calc(var(--bottom-navigation-height) + env(safe-area-inset-bottom, 0px));
   --navigation-shadow: 0 -3px 16px hsl(var(--foreground) / 0.08);
 }
@@ -65,13 +65,13 @@
   --nav-olive: #6b7a3f;
   --nav-olive-deep: #3f4c1e;
   position: fixed;
-  bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+  bottom: calc(clamp(170px, 23dvh, 260px) + env(safe-area-inset-bottom, 0px));
   left: 50%;
   transform: translateX(-50%);
   z-index: 1100;
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
-  width: min(calc(100% - 64px), 500px);
+  width: min(calc(100% - 140px), 380px);
   height: var(--bottom-navigation-height);
   padding: 6px 8px;
   background: linear-gradient(180deg, hsl(48 33% 97% / 0.72) 0%, hsl(50 32% 92% / 0.72) 55%, hsl(47 30% 88% / 0.72) 100%);
@@ -84,7 +84,7 @@
   -webkit-backdrop-filter: blur(14px);
 }
 
-.bottom-navigation--home { width: min(calc(100vw - 64px), calc(100dvh * 9 / 16 - 64px)); }
+.bottom-navigation--home { width: min(calc(100vw - 140px), calc(100dvh * 9 / 16 - 140px)); }
 .bottom-navigation .bottom-navigation-item {
   min-width: 0;
   height: 100%;
@@ -94,12 +94,12 @@
   color: var(--nav-olive);
   white-space: normal;
   text-align: center;
-  font-size: 11px;
+  font-size: 10px;
   line-height: 1.45;
   border-radius: 18px;
 }
 .bottom-navigation .bottom-navigation-item:hover { color: var(--nav-olive-deep); background: hsl(70 25% 60% / 0.12); }
-.bottom-navigation .bottom-navigation-item svg { width: 22px; height: 22px; stroke-width: 1.8; }
+.bottom-navigation .bottom-navigation-item svg { width: 20px; height: 20px; stroke-width: 1.8; }
 .bottom-navigation-item span { width: 100%; min-height: 2.9em; display: block; white-space: normal; text-wrap: balance; }
 .bottom-navigation .bottom-navigation-item--active {
   color: var(--nav-olive-deep);
@@ -177,7 +177,7 @@
 .quran-home-bottom-background {
   position: fixed;
   right: auto;
-  bottom: var(--bottom-navigation-space);
+  bottom: 0;
   left: 50%;
   z-index: 10;
   width: min(100vw, calc(100dvh * 9 / 16));
