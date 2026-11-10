@@ -15,6 +15,7 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Layout } from "../quran/components/layout";
 import { Toaster } from "../quran/components/ui/toaster";
 import { TooltipProvider } from "../quran/components/ui/tooltip";
+import { StartupScreen } from "../quran/components/startup-screen";
 
 function NotFoundComponent() {
   return (
@@ -117,6 +118,7 @@ function RootShell({ children }: { children: ReactNode }) {
         <HeadContent />
       </head>
       <body>
+        <StartupScreen />
         {children}
         <Scripts />
       </body>

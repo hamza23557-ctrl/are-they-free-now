@@ -21,3 +21,4 @@
 - Qibla uses north-referenced device orientation only, requests sensor permission from a user action, and rotates the dial and needle with continuous angles to avoid false bearings and full-turn jumps.
 
 - Android packaging is an offline Capacitor APK: `npm run cap:sync` builds a static SPA (CAPACITOR_BUILD=1) into dist/client with no server.url, because the user wants the APK to work fully on-device; online-only features (AI answers, per-ayah streaming) degrade without internet.
+- Startup artwork is bundled locally; the root shell and native Android overlay show real spinning indicators until hydration, initial images and fonts are ready, using the DOM appReady marker rather than a fixed splash delay.
