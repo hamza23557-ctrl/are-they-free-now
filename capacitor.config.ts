@@ -10,12 +10,7 @@ const config: CapacitorConfig = {
   appId: "app.lovable.quranreader",
   appName: "تقوى القلوب",
   webDir: "dist/client",
-  server: {
-    // Published (public) URL of the app — preview URLs require a Lovable login
-    // and would break the APK. Update only to a published URL, then `npm run cap:sync`.
-    url: "https://open-door-web-foundation.lovable.app?forceHideBadge=true",
-    cleartext: true,
-  },
+  // Offline APK: loads the bundled static build from webDir (no external URL).
   android: {
     allowMixedContent: false,
   },
