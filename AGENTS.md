@@ -20,4 +20,4 @@
 - Fonts must be bundled locally through `@fontsource*` packages imported in `src/styles.css`; never load them from a remote font CDN — the app has to render correctly with no internet.
 - Qibla uses north-referenced device orientation only, requests sensor permission from a user action, and rotates the dial and needle with continuous angles to avoid false bearings and full-turn jumps.
 
-- Android packaging uses Capacitor with server.url pointing at the hosted app, because AI answers rely on server functions that cannot run inside a static Android bundle. server.url must always be the published (public) URL, never a preview URL — preview hosts require a Lovable login and the APK would show a login wall instead of opening. After publishing, update server.url and run `npm run cap:sync`.
+- Android packaging is an offline Capacitor APK: `npm run cap:sync` builds a static SPA (CAPACITOR_BUILD=1) into dist/client with no server.url, because the user wants the APK to work fully on-device; online-only features (AI answers, per-ayah streaming) degrade without internet.
