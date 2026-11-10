@@ -7,7 +7,7 @@
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
 // CAPACITOR_BUILD=1 produces a fully static SPA (dist/client/index.html) for the offline Android APK.
-const isCapacitor = process.env.CAPACITOR_BUILD === "1";
+const isCapacitor = process.env["CAPACITOR_BUILD"] === "1";
 
 export default defineConfig({
   tanstackStart: {
