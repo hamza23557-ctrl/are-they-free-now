@@ -1,5 +1,7 @@
 # Tasks
 
+- [x] Extract the supplied startup artwork, animate its loading indicator until the app is ready, and replace Android launcher icons and favicon with the original green-square logo.
+
 - [x] Add five-item bottom navigation and move the home notifications button into it.
 - [x] Verify surah/ayah search with written-reader and murattal listening destinations.
 
