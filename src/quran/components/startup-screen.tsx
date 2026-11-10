@@ -18,7 +18,7 @@ export function StartupScreen() {
     Promise.all([document.fonts.ready, ...images.map(imageReady)]).then(() => {
       requestAnimationFrame(() => {
         if (!active) return;
-        document.documentElement.dataset.appReady = "true";
+        document.documentElement.dataset["appReady"] = "true";
         setReady(true);
       });
     });
